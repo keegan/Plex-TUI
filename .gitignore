@@ -1,2 +1,3 @@
 secret*
 venv/
+__pycache__/
