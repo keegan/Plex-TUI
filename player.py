@@ -6,7 +6,7 @@ import itertools
 import play_album
 import play_song
 import play_artist
-
+import play_playlist
 
 def search():
     search = urllib.parse.quote_plus(input("Search Term: "))
@@ -15,7 +15,7 @@ def search():
 
     results = [ r for r in results if int(r.attrib["size"]) > 0]
     # only can play tracks, artists, or albums
-    results = [ r for r in results if r.attrib["type"] in ["track", "album", "artist"]]
+    results = [ r for r in results if r.attrib["type"] in ["track", "album", "artist", "playlist"]]
 
     i = 0
     flat_results = []
@@ -45,6 +45,8 @@ def search():
         play_song.play(chosen.attrib["ratingKey"])
     elif chosen.attrib["type"] == "album":
         play_album.play(chosen.attrib["ratingKey"])
+    elif chosen.attrib["type"] == "playlist":
+        play_playlist.play(chosen.attrib["ratingKey"])
 
 if __name__ == "__main__":
     while True:
